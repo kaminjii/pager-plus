@@ -91,7 +91,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Title
-st.title('Enhanced Log Dashboard')
+st.title('Pager+')
 
 # Create metric containers
 col1, col2 = st.columns([3, 1])
