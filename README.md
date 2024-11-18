@@ -1,3 +1,3 @@
 # PagerPlus
 
-# Error Report Record (ERR)
+# Error Record Report (ERR)
