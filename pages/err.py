@@ -14,52 +14,21 @@ if 'logs' in st.session_state:
     critical_errors = [log for log in st.session_state.logs if log['priority'] == 'red']
     
     if critical_errors:
-        # Convert to DataFrame for better display
-        df = pd.DataFrame(critical_errors)
+        st.subheader("Critical Error Records")
         
-        # Add filters
-        st.subheader("Filters")
-        col1, col2 = st.columns(2)
-        with col1:
-            selected_time = st.multiselect(
-                "Filter by Time",
-                options=sorted(df['timestamp'].unique()),
-                default=[]
-            )
-        with col2:
-            selected_message = st.multiselect(
-                "Filter by Message",
-                options=sorted(df['message'].unique()),
-                default=[]
-            )
-        
-        # Apply filters
-        if selected_time:
-            df = df[df['timestamp'].isin(selected_time)]
-        if selected_message:
-            df = df[df['message'].isin(selected_message)]
-        
-        # Display statistics
-        st.subheader("Error Statistics")
-        stats_cols = st.columns(3)
-        with stats_cols[0]:
-            st.metric("Total Critical Errors", len(critical_errors))
-        with stats_cols[1]:
-            st.metric("Unique Error Types", df['message'].nunique())
-        with stats_cols[2]:
-            st.metric("Most Recent Error", df['timestamp'].max() if not df.empty else "N/A")
-        
-        # Display detailed error table
-        st.subheader("Detailed Error Log")
-        st.dataframe(
-            df,
-            hide_index=True,
-            column_config={
-                "timestamp": "Time",
-                "message": "Error Message",
-                "priority": None  # Hide priority column since we know they're all red
-            }
-        )
+        for i, error in enumerate(critical_errors, start=1):
+            with st.container():
+                st.markdown(f"### Error {i}")
+                col1, col2, col3 = st.columns([2, 3, 3])
+                with col1:
+                    st.write("**Timestamp:**")
+                    st.write(error["timestamp"])
+                with col2:
+                    st.write("**Error Message:**")
+                    st.write(error["message"])
+                with col3:
+                    st.write("**Notes:**")
+                    st.text_area(f"Add notes for Error {i}", key=f"notes_{i}")
     else:
         st.info("No critical errors recorded yet.")
 else:
