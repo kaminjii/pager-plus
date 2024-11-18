@@ -1,3 +1,4 @@
+# main_dashboard.py
 import streamlit as st
 import time
 from collections import deque
@@ -60,6 +61,16 @@ st.markdown("""
         .main-content {
             margin-top: 20px;
         }
+        .err-link {
+            color: #FF0000;
+            text-decoration: none;
+            font-size: 0.8em;
+            margin-top: 5px;
+            display: block;
+        }
+        .err-link:hover {
+            text-decoration: underline;
+        }
     </style>
 """, unsafe_allow_html=True)
 
@@ -72,6 +83,8 @@ metric_cols = st.columns(4)
 # Wrap each metric in a div with the appropriate class
 metric_cols[0].markdown('<div class="red-metric">', unsafe_allow_html=True)
 red_metric = metric_cols[0].empty()
+# Add ERR link below the red metric
+metric_cols[0].markdown('<a href="err" class="err-link">View Error Record Report →</a>', unsafe_allow_html=True)
 metric_cols[0].markdown('</div>', unsafe_allow_html=True)
 
 metric_cols[1].markdown('<div class="yellow-metric">', unsafe_allow_html=True)
