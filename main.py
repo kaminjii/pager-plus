@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 from collections import deque
-import random  # For demo purposes, replace with actual log reading
+import random
 
 # Initialize session state
 if 'logs' not in st.session_state:
@@ -24,12 +24,70 @@ def read_log_line():
         'message': random.choice(messages)
     }
 
+st.set_page_config(layout="wide")
+
+# Custom CSS for layout with colored backgrounds
+st.markdown("""
+    <style>
+        [data-testid="stMetricLabel"] {
+            font-weight: bold;
+        }
+        /* Custom styling for each metric type */
+        .red-metric [data-testid="metric-container"] {
+            background-color: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .yellow-metric [data-testid="metric-container"] {
+            background-color: rgba(255, 165, 0, 0.1);
+            border: 1px solid rgba(255, 165, 0, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .green-metric [data-testid="metric-container"] {
+            background-color: rgba(0, 128, 0, 0.1);
+            border: 1px solid rgba(0, 128, 0, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .progress-metric [data-testid="metric-container"] {
+            background-color: rgba(128, 128, 128, 0.1);
+            border: 1px solid rgba(128, 128, 128, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .main-content {
+            margin-top: 20px;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+# Title
 st.title('Real-time Log Dashboard')
 
-# Create columns for metrics
-col1, col2, col3, col4 = st.columns(4)
+# Create metric containers that will be updated
+metric_cols = st.columns(4)
 
-# Initialize the placeholder for the log list
+# Wrap each metric in a div with the appropriate class
+metric_cols[0].markdown('<div class="red-metric">', unsafe_allow_html=True)
+red_metric = metric_cols[0].empty()
+metric_cols[0].markdown('</div>', unsafe_allow_html=True)
+
+metric_cols[1].markdown('<div class="yellow-metric">', unsafe_allow_html=True)
+yellow_metric = metric_cols[1].empty()
+metric_cols[1].markdown('</div>', unsafe_allow_html=True)
+
+metric_cols[2].markdown('<div class="green-metric">', unsafe_allow_html=True)
+green_metric = metric_cols[2].empty()
+metric_cols[2].markdown('</div>', unsafe_allow_html=True)
+
+metric_cols[3].markdown('<div class="progress-metric">', unsafe_allow_html=True)
+progress_metric = metric_cols[3].empty()
+metric_cols[3].markdown('</div>', unsafe_allow_html=True)
+
+# Main content area with logs
+st.markdown('<div class="main-content">', unsafe_allow_html=True)
 log_list = st.empty()
 
 while True:
@@ -40,15 +98,11 @@ while True:
     # Update counts
     st.session_state.counts[new_log['priority']] += 1
     
-    # Display metrics
-    with col1:
-        st.metric("Critical (Red)", st.session_state.counts['red'])
-    with col2:
-        st.metric("Warning (Yellow)", st.session_state.counts['yellow'])
-    with col3:
-        st.metric("Info (Green)", st.session_state.counts['green'])
-    with col4:
-        st.metric("In Progress", st.session_state.counts['in_progress'])
+    # Update metrics using the placeholders
+    red_metric.metric("Critical (Red)", st.session_state.counts['red'])
+    yellow_metric.metric("Warning (Yellow)", st.session_state.counts['yellow'])
+    green_metric.metric("Info (Green)", st.session_state.counts['green'])
+    progress_metric.metric("In Progress", st.session_state.counts['in_progress'])
     
     # Display logs with color coding
     with log_list.container():
@@ -57,7 +111,7 @@ while True:
                 'red': '#FF0000',
                 'yellow': '#FFA500',
                 'green': '#008000',
-                'in_progress': '#0000FF'
+                'in_progress': '#808080'
             }
             st.markdown(
                 f"""
