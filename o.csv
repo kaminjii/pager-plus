@@ -1,0 +1,31 @@
+Timestamp,Message,Category,Group,Completed?
+2024-11-18 10:47:32,"server1,sshd,2878,Failed password,user1,192.168.1.101,56032,ssh2,",1,0,1
+2024-11-18 10:47:35,"server1,sshd,2878,Accepted password,user2,192.168.1.102,54020,ssh2,",1,1,1
+2024-11-18 10:48:10,"server1,kernel,0,Link status,,,,,eth1: Link is Down",4,10,0
+2024-11-18 10:48:11,"server1,kernel,0,Link status,,,,,eth1: Link is Up - 100Mbps Full Duplex",4,10,1
+2024-11-18 10:49:12,"server1,systemd,1,Service start,,,,,Starting Disk Quota Management Service",0,9,0
+2024-11-18 10:49:12,"server1,systemd,1,Service complete,,,,,Finished Disk Quota Management Service",0,9,1
+2024-11-18 10:49:32,"server1,sshd,2879,Failed password,admin,192.168.1.105,65022,ssh2,invalid user",1,8,1
+2024-11-18 10:49:35,"server1,sshd,2879,Accepted publickey,user3,192.168.1.104,65033,ssh2,",1,7,1
+2024-11-18 11:11:30,"server1,kernel,0,CPU status,,,,,CPU load high, 95% usage 4 6 0",3,11,1
+2024-11-18 10:50:20,"server1,kernel,0,WiFi status,,,,,wlan0: Disconnected from access point",1,6,1
+2024-11-18 10:50:21,"server1,kernel,0,WiFi status,,,,,wlan0: Connected to access point 'OfficeWiFi'",1,6,1
+2024-11-18 10:51:00,"server1,systemd,1,Service start,,,,,Starting System Update Service",0,5,0
+2024-11-18 10:51:02,"server1,systemd,1,Service complete,,,,,Finished System Update Service",0,5,1
+2024-11-18 10:51:15,"server1,sshd,2880,Failed password,root,192.168.1.107,59000,ssh2,",1,4,1
+2024-11-18 10:51:20,"server1,sshd,2880,Accepted password,root,192.168.1.108,59001,ssh2,",1,4,1
+2024-11-18 10:52:12,"server1,kernel,0,Link status,,,,,eth0: Link is Down",4,3,0
+2024-11-18 10:52:13,"server1,kernel,0,Link status,,,,,eth0: Link is Up - 1Gbps Full Duplex",4,3,1
+2024-11-18 10:52:45,"server1,systemd,1,Service start,,,,,Starting Cleanup of Temporary Directories",0,2,0
+2024-11-18 10:52:45,"server1,systemd,1,Service complete,,,,,Finished Cleanup of Temporary Directories",0,2,1
+2024-11-18 10:53:30,"server1,sshd,2881,Failed password,user2,192.168.1.110,55010,ssh2,",1,1,0
+2024-11-18 10:53:35,"server1,sshd,2881,Accepted publickey,user1,192.168.1.111,54015,ssh2,",1,0,1
+2024-11-18 10:51:20,"server1,disk-monitor,0,Warning,,,,,Disk usage is high",2,12,1
+2024-11-18 10:52:12,"server1,db-service,0,Error,,,,,Database connection failed",3,13,0
+2024-11-18 10:52:30,"server1,system-critical,1,Critical error,,,,,Server down, critical error occurred",4,14,0
+2024-11-18 10:52:45,"server1,disk-monitor,0,Warning,,,,,Disk usage is high",2,12,0
+2024-11-18 10:53:00,"server1,system-update,1,Info,,,,,Installation started for new update",0,15,0
+2024-11-18 10:53:15,"server1,db-service,0,Error,,,,,Database connection failed",3,13,0
+2024-11-18 10:53:30,"server1,system-monitor,1,Info,,,,,System started successfully",2,16,1
+2024-11-18 10:53:45,"server1,disk-monitor,0,Warning,,,,,Low disk space",2,12,0
+2024-11-18 10:54:00,"server1,memory-monitor,0,Error,,,,,Memory leak detected",2,17,0
